@@ -19,21 +19,27 @@ namespace RedAndBlueBall
             InitializeComponent();
             this.Width = 800;
             this.Height = 600;
-            this.DoubleBuffered = true;
             Random rnd = new Random ();
 
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < 5; i++)
             {
-                int x = rnd.Next(50, 750);
-                int y = rnd.Next(50, 550);
-                balls.Add(new Ball (x, y));
+                var b = new Ball(rnd.Next(50, 750), rnd.Next(50, 550));
+                balls.Add(b);
+                this.Controls.Add(b); 
             }
 
             for (int i = 0; i < 5; i++)
             {
-                int x = rnd.Next(50, 750);
-                int y = rnd.Next(50, 550);
-                balls.Add(new BilliardBall(x, y));
+                var b = new BilliardBall(rnd.Next(50, 750), rnd.Next(50, 550));
+                balls.Add(b);
+                this.Controls.Add(b);
+            }
+
+            for (int i = 0; i < 3; i++)
+            {
+                var b = new GravityBall(rnd.Next(50, 750), rnd.Next(50, 550));
+                balls.Add(b);
+                this.Controls.Add(b);
             }
 
             timer.Interval = 30;
@@ -47,13 +53,7 @@ namespace RedAndBlueBall
             {
                 ball.Move(this.ClientSize.Width, this.ClientSize.Height);
             }
-            Invalidate();
         }
 
-        protected override void OnPaint(PaintEventArgs e)
-        {
-            foreach (Ball ball in balls)
-                ball.Draw(e.Graphics);
-        }
     }
 }
