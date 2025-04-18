@@ -30,7 +30,7 @@ namespace RedAndBlueBall
 
         }
 
-        public virtual void Move(int width,int  height)
+        public new virtual void Move(int width,int  height)
         {
             this.Left += dx;
             this.Top += dy;
